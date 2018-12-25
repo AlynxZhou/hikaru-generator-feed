@@ -1,0 +1,28 @@
+{
+  "name": "hikaru-generator-feed",
+  "version": "1.0.0",
+  "description": "Feed generator plugin for Hikaru.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlynxZhou/hikaru-generator-feed.git"
+  },
+  "keywords": [
+    "Hikaru",
+    "Plugin",
+    "Generator",
+    "Feed"
+  ],
+  "author": "AlynxZhou <alynx.zhou@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/AlynxZhou/hikaru-generator-feed/issues"
+  },
+  "homepage": "https://github.com/AlynxZhou/hikaru-generator-feed#readme",
+  "dependencies": {
+    "nunjucks": "^3.1.6"
+  }
+}
