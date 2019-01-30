@@ -5,20 +5,20 @@ module.exports = (hikaru) => {
   const {removeControlChars, getURLFn, getPathFn} = hikaru.utils
   const {File} = hikaru.types
   hikaru.generator.register('afterProcessing', (site) => {
-    if (!site.get('siteConfig')['feed']['enable']) {
+    if (!site['siteConfig']['feed']['enable']) {
       return site
     }
     const tmpContent = fs.readFileSync(path.join(__dirname, 'atom.njk'), 'utf8')
     const content = nunjucks.renderString(tmpContent, {
-      'siteConfig': site.get('siteConfig'),
-      'themeConfig': site.get('themeConfig'),
-      'posts': site.get('posts'),
+      'siteConfig': site['siteConfig'],
+      'themeConfig': site['themeConfig'],
+      'posts': site['posts'],
       'removeControlChars': removeControlChars,
-      'getURL': getURLFn(site.get('siteConfig')['baseURL'], site.get('siteConfig')['rootDir']),
-      'getPath': getPathFn(site.get('siteConfig')['rootDir'])
+      'getURL': getURLFn(site['siteConfig']['baseURL'], site['siteConfig']['rootDir']),
+      'getPath': getPathFn(site['siteConfig']['rootDir'])
     })
-    const file = new File(site.get('docDir'))
-    file['docPath'] = site.get('siteConfig')['feed']['path'] || 'atom.xml'
+    const file = new File(site['siteConfig']['docDir'])
+    file['docPath'] = site['siteConfig']['feed']['path'] || 'atom.xml'
     file['content'] = content
     site.put('files', file)
     return site
