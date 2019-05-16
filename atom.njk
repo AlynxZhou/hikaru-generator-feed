@@ -32,8 +32,8 @@
     <![CDATA[{{ removeControlChars(post.excerpt) | safe }}]]>
     {% elif post.description %}
     <![CDATA[{{ removeControlChars(post.description) | safe }}]]>
-    {% elif post.text %}
-    <![CDATA[{{ removeControlChars(post.text.substring(0, siteConfig.feed.contentLimit)) | safe }}]]>
+    {% elif post.content %}
+    <![CDATA[<p>{{ removeControlChars((post.content | striptags(true) | nl2br).substring(0, siteConfig.feed.contentLimit)) | safe }}...</p>]]>
     {% endif %}
     </summary>
     {% for category in post.categories %}
