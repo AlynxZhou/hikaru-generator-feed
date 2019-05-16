@@ -33,7 +33,7 @@
     {% elif post.description %}
     <![CDATA[{{ removeControlChars(post.description) | safe }}]]>
     {% elif post.content %}
-    <![CDATA[<p>{{ removeControlChars((post.content | striptags(true) | nl2br).substring(0, siteConfig.feed.contentLimit)) | safe }}...</p>]]>
+    <![CDATA[<p>{{ removeControlChars((post.content | striptags).substring(0, siteConfig.feed.contentLimit)) | safe }}...</p>]]>
     {% endif %}
     </summary>
     {% for category in post.categories %}
