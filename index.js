@@ -4,7 +4,7 @@ const nunjucks = require('nunjucks')
 module.exports = (hikaru) => {
   const {removeControlChars, getURLFn, getPathFn} = hikaru.utils
   const {File} = hikaru.types
-  hikaru.generator.register('afterProcessing', (site) => {
+  hikaru.generator.register('feed', (site) => {
     if (!site['siteConfig']['feed']['enable']) {
       return site
     }
@@ -17,10 +17,10 @@ module.exports = (hikaru) => {
       'getURL': getURLFn(site['siteConfig']['baseURL'], site['siteConfig']['rootDir']),
       'getPath': getPathFn(site['siteConfig']['rootDir'])
     })
-    const file = new File(site['siteConfig']['docDir'])
-    file['docPath'] = site['siteConfig']['feed']['path'] || 'atom.xml'
-    file['content'] = content
-    site.put('files', file)
-    return site
+    return new File({
+      'docDir': site['siteConfig']['docDir'],
+      'docPath': site['siteConfig']['feed']['path'] || 'atom.xml',
+      'content': content
+    })
   })
 }
