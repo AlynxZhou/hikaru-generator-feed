@@ -4,7 +4,7 @@ const nunjucks = require('nunjucks')
 module.exports = (hikaru) => {
   const {removeControlChars, getURLFn, getPathFn} = hikaru.utils
   const {File} = hikaru.types
-  hikaru.generator.register('feed', (site) => {
+  hikaru.generator.register('rss feed', (site) => {
     if (!site['siteConfig']['feed']['enable']) {
       return site
     }
