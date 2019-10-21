@@ -6,7 +6,7 @@ module.exports = (hikaru) => {
   const {File} = hikaru.types
   hikaru.generator.register('rss feed', (site) => {
     if (!site['siteConfig']['feed']['enable']) {
-      return site
+      return
     }
     const tmpContent = fs.readFileSync(path.join(__dirname, 'atom.njk'), 'utf8')
     const content = nunjucks.renderString(tmpContent, {
