@@ -6,8 +6,8 @@
   <link href="{{ getURL(siteConfig.feed.path or "atom.xml") }}" rel="self" />
   {% if siteConfig.feed.hub %}<link href="{{ siteConfig.feed.hub }}" rel="hub"/>{% endif %}
   <link href="{{ getURL() }}" />
-  {% if posts != null and posts.length > 0 %}
-  <updated>{{ posts[0].updatedDate.toISOString() }}</updated>
+  {% if site.posts != null and site.posts.length > 0 %}
+  <updated>{{ site.posts[0].updatedDate.toISOString() }}</updated>
   {% endif %}
   <id>{{ getURL() }}</id>
   {% if siteConfig.author %}
@@ -17,7 +17,7 @@
   </author>
   {% endif %}
   <generator uri="https://github.com/AlynxZhou/hikaru/">Hikaru</generator>
-  {% for post in posts.slice(0, siteConfig.feed.limit) %}
+  {% for post in site.posts.slice(0, siteConfig.feed.limit) %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="{{ getURL(post.docPath) }}" />
