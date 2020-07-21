@@ -23,3 +23,5 @@ then run this command to install it.
 ```
 $ npm i -s hikaru-generator-feed
 ```
+
+If you want to skip some posts while generating, add `feed: false` to its front-matter.

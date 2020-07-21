@@ -18,6 +18,7 @@
   {% endif %}
   <generator uri="https://github.com/AlynxZhou/hikaru/">Hikaru</generator>
   {% for post in site.posts.slice(0, siteConfig.feed.limit) %}
+  {% if post.feed !== false %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="{{ getURL(post.docPath) }}" />
@@ -43,5 +44,6 @@
     <category term="{{ tag.name }}" scheme="{{ getURL(tag.docPath) }}" />
     {% endfor %}
   </entry>
+  {% endif %}
   {% endfor %}
 </feed>
