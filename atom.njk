@@ -7,7 +7,7 @@
   {% if siteConfig.feed.hub %}<link href="{{ siteConfig.feed.hub }}" rel="hub"/>{% endif %}
   <link href="{{ getURL() }}" />
   {% if site.posts != null and site.posts.length > 0 %}
-  <updated>{{ site.posts[0].updatedDate.toISOString() }}</updated>
+  <updated>{{ site.posts[0].createdDate.toISOString() }}</updated>
   {% endif %}
   <id>{{ getURL() }}</id>
   {% if siteConfig.author %}
@@ -24,7 +24,7 @@
     <link href="{{ getURL(post.docPath) }}" />
     <id>{{ getURL(post.docPath) }}</id>
     <published>{{ post.createdDate.toISOString() }}</published>
-    <updated>{{ post.updatedDate.toISOString() }}</updated>
+    <updated>{{ post.createdDate.toISOString() }}</updated>
     {% if siteConfig.feed.content and post.content %}
     <content type="html"><![CDATA[{{ removeControlChars(post.content) | safe }}]]></content>
     {% endif %}
