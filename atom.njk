@@ -28,8 +28,14 @@
     <title>{{ post.title }}</title>
     <link rel="alternate" type="text/html" href="{{ getURL(post.docPath) }}" />
     <id>{{ getURL(post.docPath) }}</id>
+    {% if post.createdDate %}
     <published>{{ post.createdDate.toISOString() }}</published>
-    <updated>{% if post.updatedDate %}{{ post.updatedDate.toISOString() }}{% else %}{{ post.createdDate.toISOString() }}{% endif %}</updated>
+    {% endif %}
+    {% if post.updatedDate %}
+    <updated>{{ post.updatedDate.toISOString() }}</updated>
+    {% elif post.createdDate %}
+    <updated>{{ post.createdDate.toISOString() }}</updated>
+    {% endif %}
     {% if post.excerpt %}
     <summary type="html">
       <![CDATA[{{ removeControlChars(post.excerpt) | safe }}]]>
