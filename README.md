@@ -11,10 +11,14 @@ First go to your site dir and add following to your `config.yml`.
 ```yaml
 feed:
   enable: true
+  # Generated atom xml file path, relative to site rootDir.
   path: atom.xml
+  # How many posts will be generated into feed. Comment this if you want to generate all posts.
   limit: 20
   hub:
+  # Set `true` to generate full content, otherwise only summary.
   content: false
+  # The length of auto generated summary if no excerpt in post.
   contentLimit: 140
 ```
 
