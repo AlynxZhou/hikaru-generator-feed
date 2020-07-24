@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/AlynxZhou/hikaru-generator-feed#readme",
   "dependencies": {
-    "cheerio": "~0.22.0",
     "nunjucks": "^3.2.2"
   }
 }

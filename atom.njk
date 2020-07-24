@@ -30,12 +30,9 @@
     <id>{{ getURL(post.docPath) }}</id>
     <published>{{ post.createdDate.toISOString() }}</published>
     <updated>{% if post.updatedDate %}{{ post.updatedDate.toISOString() }}{% else %}{{ post.createdDate.toISOString() }}{% endif %}</updated>
-    {% if siteConfig.feed.content and post.content %}
-    <content type="html"><![CDATA[{{ removeControlChars(resolveContent(post.content)) | safe }}]]></content>
-    {% endif %}
     {% if post.excerpt %}
     <summary type="html">
-      <![CDATA[{{ removeControlChars(resolveContent(post.excerpt)) | safe }}]]>
+      <![CDATA[{{ removeControlChars(post.excerpt) | safe }}]]>
     </summary>
     {% elif post.description %}
     <summary type="html">
@@ -45,6 +42,11 @@
     <summary type="html">
       <![CDATA[<p>{{ removeControlChars((post.content | striptags).substring(0, siteConfig.feed.contentLimit)) | safe }}...</p>]]>
     </summary>
+    {% endif %}
+    {% if siteConfig.feed.content and post.content %}
+    <content type="html">
+      <![CDATA[{{ removeControlChars(post.content) | safe }}]]>
+    </content>
     {% endif %}
     {% for category in post.categories %}
     <category term="{{ category.name }}" label="{{ category.name }}" scheme="{{ getURL(category.docPath) }}" />
