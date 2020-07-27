@@ -21,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/AlynxZhou/hikaru-generator-feed/issues"
   },
-  "homepage": "https://github.com/AlynxZhou/hikaru-generator-feed#readme",
-  "dependencies": {
-    "nunjucks": "^3.2.2"
-  }
+  "homepage": "https://github.com/AlynxZhou/hikaru-generator-feed#readme"
 }

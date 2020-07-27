@@ -1,11 +1,11 @@
 const path = require('path')
-const nunjucks = require('nunjucks')
 const pkg = require('./package.json')
 
-module.exports = (hikaru) => {
+module.exports = async (hikaru) => {
   const {removeControlChars} = hikaru.utils
   const {File} = hikaru.types
-  hikaru.decorator.register('atom', path.join(__dirname, 'atom.njk'))
+  const fn = await hikaru.compiler.compile(path.join(__dirname, 'atom.njk'))
+  hikaru.decorator.register('atom', fn)
   hikaru.generator.register('atom feed', (site) => {
     if (!site['siteConfig']['feed']['enable']) {
       return
