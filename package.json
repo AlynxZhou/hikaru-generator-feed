@@ -4,7 +4,7 @@
   "description": "Feed generator plugin for Hikaru.",
   "main": "index.js",
   "scripts": {
-    "test": "standardx hikaru/*.js bin/*.js"
+    "test": "standardx"
   },
   "repository": {
     "type": "git",
