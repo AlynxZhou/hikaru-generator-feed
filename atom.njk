@@ -38,20 +38,20 @@
     {% endif %}
     {% if post.excerpt %}
     <summary type="html">
-      <![CDATA[{{ removeControlChars(post.excerpt) | safe }}]]>
+      {{ escapeHTML(post.excerpt) | safe }}
     </summary>
     {% elif post.description %}
     <summary type="html">
-      <![CDATA[{{ removeControlChars(post.description) | safe }}]]>
+      {{ escapeHTML(post.description) | safe }}
     </summary>
     {% elif post.content %}
     <summary type="html">
-      <![CDATA[<p>{{ removeControlChars((post.content | striptags).substring(0, siteConfig.feed.contentLimit)) | safe }}...</p>]]>
+      {{ escapeHTML((post.content | striptags).substring(0, siteConfig.feed.contentLimit)) | safe }}…
     </summary>
     {% endif %}
     {% if siteConfig.feed.content and post.content %}
     <content type="html">
-      <![CDATA[{{ removeControlChars(post.content) | safe }}]]>
+      {{ escapeHTML(post.content) | safe }}
     </content>
     {% endif %}
     {% for category in post.categories %}

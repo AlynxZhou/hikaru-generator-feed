@@ -2,7 +2,7 @@ const path = require("path");
 const pkg = require("./package.json");
 
 module.exports = async (hikaru) => {
-  const {removeControlChars} = hikaru.utils;
+  const {escapeHTML} = hikaru.utils;
   const {File} = hikaru.types;
   const fn = await hikaru.compiler.compile(path.join(__dirname, "atom.njk"));
   hikaru.decorator.register("atom", fn);
@@ -14,7 +14,7 @@ module.exports = async (hikaru) => {
       "docDir": site["siteConfig"]["docDir"],
       "docPath": site["siteConfig"]["feed"]["path"] || "atom.xml",
       "layout": "atom",
-      "removeControlChars": removeControlChars,
+      "escapeHTML": escapeHTML,
       "generatorVersion": pkg["version"]
     });
   });
