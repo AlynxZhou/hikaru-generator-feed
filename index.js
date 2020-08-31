@@ -15,7 +15,9 @@ module.exports = async (hikaru) => {
       "docPath": site["siteConfig"]["feed"]["path"] || "atom.xml",
       "layout": "atom",
       "escapeHTML": escapeHTML,
-      "generatorVersion": pkg["version"]
+      "getFeedGeneratorVersion": () => {
+        return pkg["version"];
+      }
     });
   });
 };

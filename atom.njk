@@ -16,7 +16,7 @@
     {% if siteConfig.email %}<email>{{ siteConfig.email }}</email>{% endif %}
   </author>
   {% endif %}
-  <generator uri="https://github.com/AlynxZhou/hikaru-generator-feed/" version="{{ generatorVersion }}">Hikaru Generator Feed</generator>
+  <generator uri="https://github.com/AlynxZhou/hikaru-generator-feed/" version="v{{ getFeedGeneratorVersion() }}">Hikaru Generator Feed</generator>
   {% if siteConfig.feed.limit %}
   {% set posts = site.posts.slice(0, siteConfig.feed.limit) %}
   {% else %}
