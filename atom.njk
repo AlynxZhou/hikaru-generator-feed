@@ -28,10 +28,18 @@
     <title>{{ post.title }}</title>
     <link rel="alternate" type="text/html" href="{{ getURL(post.docPath) }}" />
     <id>{{ getURL(post.docPath) }}</id>
-    {% if siteConfig.author or siteConfig.email %}
+    {% if post.author or post.email or siteConfig.author or siteConfig.email %}
     <author>
-      {% if siteConfig.author %}<name>{{ siteConfig.author }}</name>{% endif %}
-      {% if siteConfig.email %}<email>{{ siteConfig.email }}</email>{% endif %}
+      {% if post.author %}
+      <name>{{ post.author }}</name>
+      {% elseif siteConfig.author %}
+      <name>{{ siteConfig.author }}</name>
+      {% endif %}
+      {% if post.email %}
+      <email>{{ post.email }}</email>
+      {% elseif siteConfig.email %}
+      <email>{{ siteConfig.email }}</email>
+      {% endif %}
     </author>
     {% endif %}
     {% if post.created %}
@@ -39,18 +47,18 @@
     {% endif %}
     {% if post.updated %}
     <updated>{{ post.updated.toISOString() }}</updated>
-    {% elif post.created %}
+    {% elseif post.created %}
     <updated>{{ post.created.toISOString() }}</updated>
     {% endif %}
     {% if post.excerpt %}
     <summary type="html">
       {{ escapeHTML(post.excerpt) | safe }}
     </summary>
-    {% elif post.description %}
+    {% elseif post.description %}
     <summary type="html">
       {{ escapeHTML(post.description) | safe }}
     </summary>
-    {% elif post.content %}
+    {% elseif post.content %}
     <summary type="html">
       {{ escapeHTML((post.content | striptags).substring(0, siteConfig.feed.contentLimit)) | safe }}…
     </summary>
