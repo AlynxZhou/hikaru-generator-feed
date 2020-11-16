@@ -10,9 +10,9 @@
   <updated>{{ site.posts[0].created.toISOString() }}</updated>
   {% endif %}
   <id>{{ getURL() }}</id>
-  {% if siteConfig.author %}
+  {% if siteConfig.author or siteConfig.email %}
   <author>
-    <name>{{ siteConfig.author }}</name>
+    {% if siteConfig.author %}<name>{{ siteConfig.author }}</name>{% endif %}
     {% if siteConfig.email %}<email>{{ siteConfig.email }}</email>{% endif %}
   </author>
   {% endif %}
@@ -28,6 +28,12 @@
     <title>{{ post.title }}</title>
     <link rel="alternate" type="text/html" href="{{ getURL(post.docPath) }}" />
     <id>{{ getURL(post.docPath) }}</id>
+    {% if siteConfig.author or siteConfig.email %}
+    <author>
+      {% if siteConfig.author %}<name>{{ siteConfig.author }}</name>{% endif %}
+      {% if siteConfig.email %}<email>{{ siteConfig.email }}</email>{% endif %}
+    </author>
+    {% endif %}
     {% if post.created %}
     <published>{{ post.created.toISOString() }}</published>
     {% endif %}
