@@ -28,18 +28,15 @@
     <title>{{ post.title }}</title>
     <link rel="alternate" type="text/html" href="{{ getURL(post.docPath) }}" />
     <id>{{ getURL(post.docPath) }}</id>
-    {% if post.author or post.email or siteConfig.author or siteConfig.email %}
+    {% if post.author or post.email %}
     <author>
-      {% if post.author %}
-      <name>{{ post.author }}</name>
-      {% elseif siteConfig.author %}
-      <name>{{ siteConfig.author }}</name>
-      {% endif %}
-      {% if post.email %}
-      <email>{{ post.email }}</email>
-      {% elseif siteConfig.email %}
-      <email>{{ siteConfig.email }}</email>
-      {% endif %}
+      {% if post.author %}<name>{{ post.author }}</name>{% endif %}
+      {% if post.email %}<email>{{ post.email }}</email>{% endif %}
+    </author>
+    {% elseif siteConfig.author or siteConfig.email %}
+    <author>
+      {% if siteConfig.author %}<name>{{ siteConfig.author }}</name>{% endif %}
+      {% if siteConfig.email %}<email>{{ siteConfig.email }}</email>{% endif %}
     </author>
     {% endif %}
     {% if post.created %}
