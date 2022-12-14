@@ -2,7 +2,8 @@
   "name": "hikaru-generator-feed",
   "version": "2.3.6",
   "description": "Feed generator plugin for Hikaru.",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "test": "standardx",
     "preversion": "npm test"
@@ -24,6 +25,6 @@
   },
   "homepage": "https://github.com/AlynxZhou/hikaru-generator-feed#readme",
   "devDependencies": {
-    "standardx": "^5.0.0"
+    "standardx": "^7.0.0"
   }
 }

@@ -1,18 +1,20 @@
-const fs = require("fs/promises");
-const path = require("path");
-const pkg = require("./package.json");
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
 
-module.exports = async (hikaru) => {
+const pluginDir = path.dirname(new URL(import.meta.url).pathname);
+
+const generateFeed = async (hikaru) => {
   if (!hikaru.site["siteConfig"]["feed"]["enable"]) {
     return;
   }
-  const {escapeHTML} = hikaru.utils;
+  const {escapeHTML, loadJSON} = hikaru.utils;
   const {File} = hikaru.types;
-  const filepath = path.join(__dirname, "atom.njk");
+  const pkgJSON = loadJSON(path.join(pluginDir, "package.json"));
+  const filepath = path.join(pluginDir, "atom.njk");
   const content = await fs.readFile(filepath, "utf8");
   const fn = await hikaru.compiler.compile(filepath, content);
   hikaru.decorator.register("atom", fn, {
-    "dirname": __dirname, "pathSep": path.sep
+    "dirname": pluginDir, "pathSep": path.sep
   });
   hikaru.generator.register("atom feed", (site) => {
     return new File({
@@ -21,8 +23,10 @@ module.exports = async (hikaru) => {
       "layout": "atom",
       "escapeHTML": escapeHTML,
       "getFeedGeneratorVersion": () => {
-        return pkg["version"];
+        return pkgJSON["version"];
       }
     });
   });
 };
+
+export default generateFeed;
