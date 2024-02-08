@@ -16,6 +16,7 @@ const generateFeed = async (hikaru) => {
   hikaru.decorator.register("atom", fn, {
     "dirname": pluginDir,
     "pathSep": path.sep,
+    "escapeHTML": escapeHTML,
     "getFeedGeneratorVersion": () => {
       return pkgJSON["version"];
     }
@@ -24,8 +25,7 @@ const generateFeed = async (hikaru) => {
     return new File({
       "docDir": site["siteConfig"]["docDir"],
       "docPath": site["siteConfig"]["feed"]["path"] || "atom.xml",
-      "layout": "atom",
-      "escapeHTML": escapeHTML
+      "layout": "atom"
     });
   });
 };
