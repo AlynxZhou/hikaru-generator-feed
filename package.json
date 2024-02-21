@@ -1,6 +1,6 @@
 {
   "name": "hikaru-generator-feed",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "Feed generator plugin for Hikaru.",
   "type": "module",
   "exports": "./index.js",
