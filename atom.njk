@@ -68,6 +68,9 @@
     {%- endif %}
     {%- if post.updated %}
     <updated>{{ post.updated.toISOString() }}</updated>
+    {%- elseif post.created %}
+    {#- `updated` is always required even there is already a `published`. #}
+    <updated>{{ post.created.toISOString() }}</updated>
     {%- endif %}
     {%- if post.excerpt %}
     <summary type="html">
