@@ -12,9 +12,14 @@
   <link rel="hub" href="{{ siteConfig.feed.hub }}" />
   {%- endif %}
   <link rel="alternate" type="text/html" href="{{ getURL() }}" />
-  {%- if site.posts and site.posts.length > 0 %}
-  <updated>{{ site.posts[0].created.toISOString() }}</updated>
-  {%- endif %}
+  {#-
+    The best way should be iterating over all posts to get the latest updated
+    post, but actually RFC 4287 only says "when an entry or feed was modified in
+    a way the publisher considers significant", so make it simple. It should not
+    leads into problems, RSS readers should check posts for which one is updated
+    instead of this.
+  #}
+  <updated>{{ decorated.toISOString() }}</updated>
   <id>{{ getURL() }}</id>
   {%- if siteConfig.author or siteConfig.email %}
   <author>
@@ -63,8 +68,6 @@
     {%- endif %}
     {%- if post.updated %}
     <updated>{{ post.updated.toISOString() }}</updated>
-    {%- elseif post.created %}
-    <updated>{{ post.created.toISOString() }}</updated>
     {%- endif %}
     {%- if post.excerpt %}
     <summary type="html">
